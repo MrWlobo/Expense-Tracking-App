@@ -1,0 +1,7 @@
+.env
+
+[Bb]in/
+[Oo]bj/
+
+.vs/
+.vscode/
