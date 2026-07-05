@@ -1,4 +1,7 @@
-DotNetEnv.Env.Load("../.env");
+using ExpenseTrackingApp.Data;
+using Microsoft.EntityFrameworkCore;
+
+DotNetEnv.Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +17,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
 connectionString = connectionString.Replace("DB_PASSWORD_PLACEHOLDER", dbPassword);
 
-builder.Services.AddDbContext<ExpensesDBContext>(options =>
+builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
 
 var app = builder.Build();
