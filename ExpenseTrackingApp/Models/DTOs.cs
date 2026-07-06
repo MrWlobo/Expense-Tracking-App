@@ -27,3 +27,8 @@ public class GetCategoryDto
     public int Id { get; set; }
     public required string CategoryName { get; set; }
 }
+
+public class UpdateCategoryDto
+{
+    public required string CategoryName { get; set; }
+}

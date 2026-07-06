@@ -57,4 +57,39 @@ public class CategoriesController : ControllerBase
 
         return StatusCode(201, category);
     }
+
+    [HttpPut]
+    [Route("{id:int}")]
+    public async Task<IActionResult> UpdateCategory([FromRoute] int id, [FromBody] UpdateCategoryDto categoryDto)
+    {
+        var existingCategory = await appDbContext.Categories.FindAsync(id);
+
+        if (existingCategory == null)
+        {
+            return NotFound();
+        }
+
+        existingCategory.CategoryName = categoryDto.CategoryName;
+
+        await appDbContext.SaveChangesAsync();
+
+        return StatusCode(204);
+    }
+
+    [HttpDelete]
+    [Route("{id:int}")]
+    public async Task<IActionResult> DeleteCategory([FromRoute] int id)
+    {
+        var category = await appDbContext.Categories.FindAsync(id);
+
+        if (category == null)
+        {
+            return NotFound();
+        }
+
+        appDbContext.Categories.Remove(category);
+        await appDbContext.SaveChangesAsync();
+
+        return StatusCode(204);
+    }
 }
