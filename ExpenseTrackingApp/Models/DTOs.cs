@@ -7,3 +7,12 @@ public class CreateExpenseDto
     public DateTime Date { get; set; }
     public int CategoryId { get; set; }
 }
+
+public class GetExpenseDto
+{
+    public int Id { get; set; }
+    public decimal Amount { get; set; }
+    public string Comments { get; set; }
+    public DateTime Date { get; set; }
+    public int CategoryId { get; set; }
+}
