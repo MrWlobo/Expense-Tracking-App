@@ -14,6 +14,15 @@ services:
     environment:
       - ConnectionStrings__DefaultConnection=Server=sql-server;Database=ExpenseTrackingDb;User Id=sa;Password=${DB_PASSWORD};TrustServerCertificate=True;
 
+  # Container with frontend
+  frontend:
+      image: expense-tracking-ui
+      build:
+        context: ./ExpenseTrackingAppUI
+        dockerfile: Dockerfile
+      ports:
+        - "3000:3000"
+
   # Container with SSMS database
   sql-server:
     image: mcr.microsoft.com/mssql/server:2022-latest
