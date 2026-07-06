@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pipeline Connection Test</title>
+    <style>
+        body { font-family: sans-serif; max-width: 600px; margin: 40px auto; padding: 0 20px; }
+        button { padding: 10px 15px; font-size: 16px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 4px; }
+        button:hover { background: #0056b3; }
+        #status { margin-top: 20px; padding: 15px; border-radius: 4px; display: none; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        pre { background: #f8f9fa; padding: 10px; border: 1px solid #e9ecef; overflow-x: auto; }
+    </style>
+</head>
+<body>
+
+    <h2>Full-Stack Connection Test</h2>
+    <p>Click the button below to test if this frontend can read data from your .NET API and Database.</p>
+    
+    <button id="testBtn">Fetch Expenses from API</button>
+
+    <div id="status"></div>
+
+    <script>
+        const testBtn = document.getElementById('testBtn');
+        const statusDiv = document.getElementById('status');
+
+        // Points directly to your backend Docker container port
+        const API_URL = 'http://localhost:8080/api/expenses';
+
+        testBtn.addEventListener('click', async () => {
+            statusDiv.style.display = 'block';
+            statusDiv.className = '';
+            statusDiv.innerHTML = 'Connecting to API...';
+
+            try {
+                const response = await fetch(API_URL);
+                
+                if (!response.ok) {
+                    throw new Error(`Backend responded with status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                statusDiv.className = 'success';
+                statusDiv.innerHTML = `
+                    <h3>🎉 Success! Connected to Backend & DB!</h3>
+                    <p>Received ${data.length} records from the database:</p>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                statusDiv.className = 'error';
+                statusDiv.innerHTML = `
+                    <h3>❌ Connection Failed</h3>
+                    <p>${error.message}</p>
+                    <p>Check your browser DevTools Console (F12) for CORS or network details.</p>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -21,7 +21,7 @@ services:
         context: ./ExpenseTrackingAppUI
         dockerfile: Dockerfile
       ports:
-        - "3000:3000"
+        - "3000:80"
 
   # Container with SSMS database
   sql-server:
