@@ -21,7 +21,18 @@ public class ExpensesController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAllExpenses()
     {
-        return Ok(await appDbContext.Expenses.ToListAsync());
+        var expensesDto = await appDbContext.Expenses
+            .Select(expense => new GetExpenseDto
+            {
+                Id = expense.Id,
+                Amount = expense.Amount,
+                Comments = expense.Comments ?? string.Empty,
+                Date = expense.Date,
+                CategoryId = expense.CategoryId
+            })
+            .ToListAsync();
+
+        return Ok(expensesDto);
     }
 
     [HttpGet]
@@ -62,5 +73,43 @@ public class ExpensesController : ControllerBase
         await appDbContext.SaveChangesAsync();
 
         return StatusCode(201, expense);
+    }
+
+    [HttpPut]
+    [Route("{id:int}")]
+    public async Task<IActionResult> updateExpense([FromBody] UpdateExpenseDto expenseDto, [FromRoute] int id)
+    {
+        var existingExpense = await appDbContext.Expenses.FindAsync(id);
+
+        if (existingExpense == null)
+        {
+            return NotFound();
+        }
+
+        existingExpense.Amount = expenseDto.Amount;
+        existingExpense.CategoryId = expenseDto.CategoryId;
+        existingExpense.Comments = expenseDto.Comments;
+        existingExpense.Date = expenseDto.Date;
+
+        await appDbContext.SaveChangesAsync();
+
+        return StatusCode(204);
+    }
+
+    [HttpDelete]
+    [Route("{id:int}")]
+    public async Task<IActionResult> deleteExpense([FromRoute] int id)
+    {
+        var expense = await appDbContext.Expenses.FindAsync(id);
+
+        if (expense == null)
+        {
+            return NotFound();
+        }
+
+        appDbContext.Remove(expense);
+        await appDbContext.SaveChangesAsync();
+
+        return StatusCode(204);
     }
 }

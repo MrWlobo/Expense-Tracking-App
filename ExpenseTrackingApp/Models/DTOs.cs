@@ -17,6 +17,14 @@ public class GetExpenseDto
     public int CategoryId { get; set; }
 }
 
+public class UpdateExpenseDto
+{
+    public decimal Amount { get; set; }
+    public string? Comments { get; set; }
+    public DateTime Date { get; set; }
+    public int CategoryId { get; set; }
+}
+
 public class CreateCategoryDto
 {
     public required string CategoryName { get; set; }
