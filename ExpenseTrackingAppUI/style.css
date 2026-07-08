@@ -1,0 +1,67 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 72px;
+    color: rgb(238, 217, 252);
+    text-shadow: 3px 3px 50px rgb(169, 49, 244);
+}
+
+footer {
+    background-color: rgb(163, 131, 194);
+    color: rgb(38, 3, 61);
+    text-align: center;
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    box-sizing: border-box;
+
+    background: linear-gradient(rgb(38, 3, 61), rgb(90, 3, 120));
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 30px 20px;
+}
+
+.button {
+    background-color: rgb(238, 217, 252);
+    color: rgb(38, 3, 61);
+    border: 0px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 18px;
+    padding: 5px;
+    border-radius: 7px;
+}
+
+.button:hover {
+    background-color: rgb(201, 153, 233);
+    transform: scale(1.1);
+}
+
+.button:active {
+    background-color: rgb(174, 102, 222);
+}
+
+#main-summary {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 28px;
+    color: rgb(238, 217, 252);
+}
