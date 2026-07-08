@@ -7,12 +7,18 @@ h1 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 72px;
     color: rgb(238, 217, 252);
-    text-shadow: 3px 3px 50px rgb(169, 49, 244);
+    text-shadow: 3px 3px 50px rgb(153, 49, 244);
+}
+
+nav {
+    background-color: rgb(16, 3, 24);
+    color: rgb(238, 217, 252);
+    text-align: center;
 }
 
 footer {
-    background-color: rgb(163, 131, 194);
-    color: rgb(38, 3, 61);
+    background-color: rgb(16, 3, 24);
+    color: rgb(238, 217, 252);
     text-align: center;
 }
 
@@ -49,6 +55,7 @@ footer {
     font-size: 18px;
     padding: 5px;
     border-radius: 7px;
+    transition: 0.25s ease;
 }
 
 .button:hover {
