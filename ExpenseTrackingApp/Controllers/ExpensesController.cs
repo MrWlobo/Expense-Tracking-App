@@ -55,6 +55,17 @@ public class ExpensesController : ControllerBase
     }
 
     [HttpGet]
+    [Route("{month:int}/{year:int}/total")]
+    public async Task<IActionResult> GetMonthlyTotal([FromRoute] int month, [FromRoute] int year)
+    {
+        var total = await appDbContext.Expenses
+            .Where(expense => expense.Date.Year == year && expense.Date.Month == month)
+            .SumAsync(expense => expense.Amount);
+
+        return Ok(total);
+}
+
+    [HttpGet]
     [Route("{id:int}")]
     public async Task<IActionResult> GetExpenseById([FromRoute] int id)
     {
