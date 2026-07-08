@@ -36,6 +36,25 @@ public class ExpensesController : ControllerBase
     }
 
     [HttpGet]
+    [Route("{month:int}/{year:int}")]
+    public async Task<IActionResult> GetExpensesByMonth([FromRoute] int month, [FromRoute] int year)
+    {
+        var expensesDto = await appDbContext.Expenses
+            .Where(expense => expense.Date.Year == year && expense.Date.Month == month)
+            .Select(expense => new GetExpenseDto
+            {
+                Id = expense.Id,
+                Amount = expense.Amount,
+                Comments = expense.Comments ?? string.Empty,
+                Date = expense.Date,
+                CategoryId = expense.CategoryId
+            })
+            .ToListAsync();
+
+        return Ok(expensesDto);
+    }
+
+    [HttpGet]
     [Route("{id:int}")]
     public async Task<IActionResult> GetExpenseById([FromRoute] int id)
     {

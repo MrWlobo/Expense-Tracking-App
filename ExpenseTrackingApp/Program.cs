@@ -25,8 +25,14 @@ builder.Services.AddCors(options =>
 
 // Connecting to DB
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
-connectionString = connectionString.Replace("DB_PASSWORD_PLACEHOLDER", dbPassword);
+
+// If you are using Docker, the password is already inside the connection string.
+// We only need to replace the placeholder if we are running locally outside Docker.
+if (connectionString.Contains("DB_PASSWORD_PLACEHOLDER"))
+{
+    var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
+    connectionString = connectionString.Replace("DB_PASSWORD_PLACEHOLDER", dbPassword);
+}
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
@@ -47,5 +53,21 @@ app.UseCors("AllowFrontend");
 app.UseAuthorization();
 
 app.MapControllers();
+
+// Automatically apply migrations and create the database if it doesn't exist
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        var context = services.GetRequiredService<AppDbContext>();
+        context.Database.Migrate();
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred while migrating or creating the database.");
+    }
+}
 
 app.Run();
