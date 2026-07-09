@@ -29,6 +29,3 @@ getTotalByMonth(month, year);
 let budgetGoal = 4000;
 
 // Buttons
-addExpenseButton.onclick = function () {
-    
-}
