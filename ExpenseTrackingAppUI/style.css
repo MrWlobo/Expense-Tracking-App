@@ -110,13 +110,7 @@ form {
     border-radius: 5px;
 }
 
-#main-summary {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 28px;
-    color: rgb(238, 217, 252);
-}
-
-#recent-expenses-list {
+.side-board-list {
     display: flex;
     flex-direction: column;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -128,6 +122,25 @@ form {
     overflow-wrap: break-word;
     word-break: break-word;
 }
+
+#main-summary {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 28px;
+    color: rgb(238, 217, 252);
+}
+
+/* #recent-expenses-list {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 14px;
+    color: rgb(238, 217, 252);
+    gap: 12px;
+    list-style-type: none;
+    text-align: left;
+    overflow-wrap: break-word;
+    word-break: break-word;
+} */
 
 #comments-input {
     resize: none;
