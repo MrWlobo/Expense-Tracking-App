@@ -1,15 +1,23 @@
 // HTML Elements
 const mainSummary = document.getElementById(`main-summary`);
 
-let monthlyExpensesTotal = 1000.99;
-let now = new Date();
-let year = now.getFullYear();
-let month = now.getMonth() + 1;
 
-mainSummary.textContent = `This month (${month}.${year}) you spent ${monthlyExpensesTotal} PLN.`
+// Modify HTML Functions
+function updateMainSummary(month, year, response) {
+    mainSummary.textContent = `This month (${month}.${year}) you spent ${response} PLN.`;
+} 
 
 // API Functions
-
 function getTotalByMonth(month, year) {
-    fetch("lo")
+    fetch(`http://localhost:5280/api/Expenses/${month}/${year}/total`)
+    .then(data => data.json())
+    .then(response => updateMainSummary(month, year, response))
+    .catch(err => console.error("API Error:", err));
 }
+
+// -----
+let currentDate = new Date();
+let month = currentDate.getMonth() + 1; 
+let year = currentDate.getFullYear();
+
+getTotalByMonth(month, year);
