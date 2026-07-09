@@ -63,7 +63,7 @@ public class ExpensesController : ControllerBase
             .SumAsync(expense => expense.Amount);
 
         return Ok(total);
-}
+    }
 
     [HttpGet]
     [Route("{id:int}")]

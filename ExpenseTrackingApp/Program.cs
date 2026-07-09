@@ -25,13 +25,20 @@ builder.Services.AddCors(options =>
 
 // Connecting to DB
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
 
-// If you are using Docker, the password is already inside the connection string.
-// We only need to replace the placeholder if we are running locally outside Docker.
-if (connectionString.Contains("DB_PASSWORD_PLACEHOLDER"))
+// If a password environment variable exists, explicitly make sure it's appended safely
+if (!string.IsNullOrEmpty(dbPassword) && !connectionString.Contains(dbPassword))
 {
-    var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
-    connectionString = connectionString.Replace("DB_PASSWORD_PLACEHOLDER", dbPassword);
+    if (connectionString.Contains("DB_PASSWORD_PLACEHOLDER"))
+    {
+        connectionString = connectionString.Replace("DB_PASSWORD_PLACEHOLDER", dbPassword);
+    }
+    else if (!connectionString.Contains("Password="))
+    {
+        // Fallback injection for pure Docker string formats
+        connectionString = $"{connectionString.TrimEnd(';')};Password={dbPassword};";
+    }
 }
 
 builder.Services.AddDbContext<AppDbContext>(options =>

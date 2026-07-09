@@ -17,4 +17,6 @@ COPY --from=build-env /app/out .
 
 # Expose port and set the entrypoint
 EXPOSE 8080
+ENV ASPNETCORE_ENVIRONMENT=Development
+
 ENTRYPOINT ["dotnet", "ExpenseTrackingApp.dll"]
