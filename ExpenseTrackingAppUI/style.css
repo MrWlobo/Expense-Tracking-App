@@ -24,7 +24,7 @@ footer {
     text-align: center;
 }
 
-.page-container {
+main {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -33,6 +33,11 @@ footer {
     box-sizing: border-box;
 
     background: linear-gradient(rgb(38, 3, 61), rgb(90, 3, 120));
+}
+
+form {
+    display: flex;
+    flex-direction: column;
 }
 
 .main-content {
@@ -92,6 +97,17 @@ footer {
 
 .button:active {
     background-color: rgb(174, 102, 222);
+}
+
+.input-field {
+    background-color: rgb(35, 4, 54);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 14px;
+    color: rgb(238, 217, 252);
+    margin: 10px;
+    border: 0px;
+    padding: 5px;
+    border-radius: 5px;
 }
 
 #main-summary {

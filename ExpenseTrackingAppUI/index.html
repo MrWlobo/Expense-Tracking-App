@@ -10,7 +10,7 @@
 
     <body>
         <nav>Navigation bar</nav>
-        <main class="page-container">
+        <main>
             <div class="side-board">
                 <p class="title">Recent Expenses</p>
                 <ul id="recent-expenses-list">
@@ -28,10 +28,14 @@
                     <p id="main-summary"></p>
                 </div>
                 <div class="button-group">
-                    <button class="button">See Charts</button>
-                    <button class="button">See Expenses' Details</button>
-                    <button class="button">Add Expense</button>
-                    <button class="button">Add Category</button>
+                    <button class="button" id="charts-button">See Charts</button>
+                    <button class="button" id="expenses-details-button">See Expenses' Details</button>
+                    <a href="expensePanel.html">
+                        <button class="button">Manage Expenses</button>
+                    </a>
+                    <a href="categoryPanel.html">
+                        <button class="button">Manage Categories</button>
+                    </a>
                 </div>
             </div>
 

@@ -1,5 +1,9 @@
 // HTML Elements
 const mainSummary = document.getElementById(`main-summary`);
+const chartsButton = document.getElementById(`charts-button`);
+const expensesDetailsButton = document.getElementById(`expenses-details-button`);
+const addExpenseButton = document.getElementById(`add-expense-button`);
+const addCategoryButton = document.getElementById(`add-category-button`);
 
 
 // Modify HTML Functions
@@ -21,3 +25,10 @@ let month = currentDate.getMonth() + 1;
 let year = currentDate.getFullYear();
 
 getTotalByMonth(month, year);
+
+let budgetGoal = 4000;
+
+// Buttons
+addExpenseButton.onclick = function () {
+    
+}
