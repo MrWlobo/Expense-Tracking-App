@@ -9,20 +9,34 @@
     </head>
 
     <body>
+        <nav>Navigation bar</nav>
         <main class="page-container">
-            <nav>Navigation bar</nav>
-            <div class="main-content">
-                <h1>Expense Tracker</h1>
-                <p id="main-summary"></p>
+            <div class="recent-expenses">
+                <p class="title">Recent Expenses</p>
+                <ul>
+                    <li>Test</li>
+                </ul>
             </div>
 
-            <div class="button-group">
-                <button class="button">See Charts</button>
-                <button class="button">See Expenses' Details</button>
-                <button class="button">Add Expense</button>
+            <div class="center-content">
+                <div class="main-content">
+                    <h1>Expense Tracker</h1>
+                    <p id="main-summary"></p>
+                </div>
+                <div class="button-group">
+                    <button class="button">See Charts</button>
+                    <button class="button">See Expenses' Details</button>
+                    <button class="button">Add Expense</button>
+                </div>
             </div>
-            <footer>Expense Tracker 2026</footer>
+
+            <div class="budget-goal">
+                <p class="title">Budget Goal</p>
+                <p class="title">1000/4000 PLN</p>
+                <progress value="1000" max="4000"></progress>
+            </div>
         </main>
+        <footer>Expense Tracker 2026</footer>
 
         <script src="script.js"></script>
     </body>

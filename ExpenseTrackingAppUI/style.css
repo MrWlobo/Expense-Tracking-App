@@ -11,6 +11,8 @@ h1 {
 }
 
 nav {
+    position: sticky;
+    top: 0;
     background-color: rgb(16, 3, 24);
     color: rgb(238, 217, 252);
     text-align: center;
@@ -24,7 +26,9 @@ footer {
 
 .page-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
     min-height: 100vh;
     box-sizing: border-box;
 
@@ -40,9 +44,26 @@ footer {
     text-align: center;
 }
 
+/* .dashboard-grid {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 800px;
+    margin: 10px auto;
+} */
+
+/* .recent-expenses {
+    text-align: left;
+}
+
+.budget-goal {
+    text-align: right;
+} */
+
 .button-group {
     display: flex;
     justify-content: center;
+    margin-top: 100px;
     gap: 20px;
     padding: 30px 20px;
 }
