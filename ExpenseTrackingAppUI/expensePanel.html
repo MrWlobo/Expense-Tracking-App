@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UFT-8">
+        <title>Expense Tracker</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <nav>Nav</nav>
+        <main>
+            <div class="center-content">
+                <form>
+                    <label class="title" for="amount-input">Amount</label>
+                    <input type="text" inputmode="decimal" placeholder="0.00" oninput="validateExpenseInput(this)" class="input-field" id="amount-input" autocomplete="off">
+
+                    <label class="title" for="category-id-input">Category ID</label>
+                    <input type="number" placeholder="0" class="input-field" id="category-id-input" autocomplete="off">
+
+                    <label class="title" for="category-id-input">Comments</label>
+                    <textarea class="input-field" id="comments-input" maxlength="500" rows="5" cols="15"></textarea>
+                </form>
+
+                <div class="button-group">
+                    <a href="index.html">
+                        <button class="button">Home Page</button>
+                    </a>
+                    <button class="button" id="add-category-button">Add Category</button>
+                </div>
+            </div>
+        </main>
+        <footer>Expense Tracker 2026</footer>
+        <script src="script.js"></script>
+    </body>
+</html>

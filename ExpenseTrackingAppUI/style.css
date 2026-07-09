@@ -128,3 +128,7 @@ form {
     overflow-wrap: break-word;
     word-break: break-word;
 }
+
+#comments-input {
+    resize: none;
+}
