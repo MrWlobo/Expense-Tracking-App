@@ -1,3 +1,4 @@
+// HTML Elements
 const mainSummary = document.getElementById(`main-summary`);
 
 let monthlyExpensesTotal = 1000.99;
@@ -7,3 +8,8 @@ let month = now.getMonth() + 1;
 
 mainSummary.textContent = `This month (${month}.${year}) you spent ${monthlyExpensesTotal} PLN.`
 
+// API Functions
+
+function getTotalByMonth(month, year) {
+    fetch("lo")
+}
