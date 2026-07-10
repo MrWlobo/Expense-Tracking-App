@@ -16,7 +16,7 @@ function getTotalByMonth(month, year) {
     fetch(`http://localhost:8080/api/Expenses/${month}/${year}/total`)
     .then(data => data.json())
     .then(response => updateMainSummary(month, year, response))
-    .catch(err => console.error("API Error:", err));
+    .catch(error => console.error("Error while getting the total:", error));
 }
 
 // -----

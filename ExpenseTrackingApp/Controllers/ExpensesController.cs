@@ -66,6 +66,26 @@ public class ExpensesController : ControllerBase
     }
 
     [HttpGet]
+    [Route("recent/{count:int}")]
+    public async Task<IActionResult> GetRecentExpenses([FromRoute] int count)
+    {
+        var expensesDto = await appDbContext.Expenses
+            .OrderByDescending(expense => expense.Date)
+            .Take(5)
+            .Select(expense => new GetExpenseDto
+            {
+                Id = expense.Id,
+                Amount = expense.Amount,
+                Comments = expense.Comments ?? string.Empty,
+                Date = expense.Date,
+                CategoryId = expense.CategoryId
+            })
+            .ToListAsync();
+
+        return Ok(expensesDto);
+    }
+
+    [HttpGet]
     [Route("{id:int}")]
     public async Task<IActionResult> GetExpenseById([FromRoute] int id)
     {
