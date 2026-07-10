@@ -113,10 +113,12 @@ form {
 .side-board-list {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 14px;
     color: rgb(238, 217, 252);
     gap: 12px;
+    padding: 0px;
     list-style-type: none;
     text-align: left;
     overflow-wrap: break-word;

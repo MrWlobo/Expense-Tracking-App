@@ -1,9 +1,5 @@
 // HTML Elements
 const mainSummary = document.getElementById(`main-summary`);
-const chartsButton = document.getElementById(`charts-button`);
-const expensesDetailsButton = document.getElementById(`expenses-details-button`);
-const addExpenseButton = document.getElementById(`add-expense-button`);
-const addCategoryButton = document.getElementById(`add-category-button`);
 const recentExpensesList = document.getElementById(`recent-expenses-list`);
 
 // Modify HTML Functions
@@ -44,5 +40,3 @@ let recentExpensesMaxCount = 5;
 
 getTotalByMonth(month, year);
 getRecentExpenses(recentExpensesMaxCount);
-
-// Buttons
