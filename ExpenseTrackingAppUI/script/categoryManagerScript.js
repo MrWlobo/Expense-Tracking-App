@@ -74,7 +74,7 @@ getAllCategories()
 getSpandingsByCategories()
 
 // Buttons
-addCategoryButton.onclick = function async () {
+addCategoryButton.onclick = async function () {
     let categoryName = categoryNameInput.value.trim();
     
     if (categoryName === "") {

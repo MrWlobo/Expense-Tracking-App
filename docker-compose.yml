@@ -10,7 +10,8 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - sql-server
+      sql-server:
+        condition: service_healthy
     environment:
       - ConnectionStrings__DefaultConnection=Server=sql-server;Database=ExpenseTrackingDb;User Id=sa;Password=${DB_PASSWORD};TrustServerCertificate=True;
 
@@ -22,6 +23,8 @@ services:
         dockerfile: Dockerfile
       ports:
         - "3000:80"
+      depends_on:
+        - web-api
 
   # Container with SSMS database
   sql-server:
@@ -31,3 +34,8 @@ services:
     environment:
       - ACCEPT_EULA=Y
       - MSSQL_SA_PASSWORD=${DB_PASSWORD}
+    healthcheck:
+      test: ["CMD", "/opt/mssql-tools18/bin/sqlcmd", "-C", "-S", "localhost", "-U", "sa", "-P", "${DB_PASSWORD}", "-Q", "SELECT 1"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
