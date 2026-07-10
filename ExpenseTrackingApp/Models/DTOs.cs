@@ -40,3 +40,18 @@ public class UpdateCategoryDto
 {
     public required string CategoryName { get; set; }
 }
+
+public class GetSpendingsByCategoryDto
+{
+    public required string CategoryName { get; set; }
+    public decimal TotalAmount { get; set; }
+}
+
+public class GetExpenseWithCategoryNameDto
+{
+    public int Id { get; set; }
+    public decimal Amount { get; set; }
+    public string? Comments { get; set; }
+    public DateTime Date { get; set; }
+    public required string CategoryName { get; set; }
+}

@@ -70,15 +70,21 @@ public class ExpensesController : ControllerBase
     public async Task<IActionResult> GetRecentExpenses([FromRoute] int count)
     {
         var expensesDto = await appDbContext.Expenses
-            .OrderByDescending(expense => expense.Date)
+            .Join(
+                appDbContext.Categories,
+                expense => expense.CategoryId,
+                category => category.Id,
+                (expense, category) => new { expense, category }
+            )
+            .OrderByDescending(expense => expense.expense.Date)
             .Take(5)
-            .Select(expense => new GetExpenseDto
+            .Select(joined => new GetExpenseWithCategoryNameDto
             {
-                Id = expense.Id,
-                Amount = expense.Amount,
-                Comments = expense.Comments ?? string.Empty,
-                Date = expense.Date,
-                CategoryId = expense.CategoryId
+                Id = joined.expense.Id,
+                Amount = joined.expense.Amount,
+                Comments = joined.expense.Comments ?? string.Empty,
+                Date = joined.expense.Date,
+                CategoryName = joined.category.CategoryName
             })
             .ToListAsync();
 
@@ -119,7 +125,7 @@ public class ExpensesController : ControllerBase
                 (expense, category) => new { expense, category }
             )
             .GroupBy(joined => joined.category.CategoryName)
-            .Select(group => new 
+            .Select(group => new GetSpendingsByCategoryDto
             {
                 CategoryName = group.Key,
                 TotalAmount = group.Sum(joined => joined.expense.Amount)
