@@ -201,3 +201,24 @@ progress::-moz-progress-bar {
 #comments-input {
     resize: none;
 }
+
+#expenses-details-center-content {
+    width: 70vw;
+}
+
+#expenses-details-list {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 22px;
+    color: rgb(238, 217, 252);
+    gap: 12px;
+    padding: 0px;
+    padding-right: 20px;
+    list-style-type: none;
+    text-align: center;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    overflow-x: hidden
+}
