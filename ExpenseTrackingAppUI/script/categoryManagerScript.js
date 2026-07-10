@@ -58,9 +58,20 @@ function addCategory (categoryName) {
 function getAllCategories () {
     fetch(`http://localhost:8080/api/Categories`)
     .then(data => data.json())
-    .then(response => updateMainSummary(month, year, response))
-    .catch(error => console.error("Error while getting the total:", error));
+    .then(response => updateCategoriesList(response))
+    .catch(error => console.error("Error while getting the categories:", error));
 }
+
+function getSpandingsByCategories () {
+    fetch(`http://localhost:8080/api/Categories/spendings`)
+    .then(data => data.json())
+    .then(response => updateSpendingsByCategoryList(response))
+    .catch(error => console.error("Error while getting the spendings by category:", error));
+}
+
+// Non-Interactive Elements
+getAllCategories()
+getSpandingsByCategories()
 
 // Buttons
 addCategoryButton.onclick = function async () {
@@ -73,4 +84,6 @@ addCategoryButton.onclick = function async () {
 
     await addCategory(categoryName);
     categoryNameInput.value = "";
+    getAllCategories()
+    getSpandingsByCategories()
 }
