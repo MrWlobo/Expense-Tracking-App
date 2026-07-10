@@ -1,6 +1,17 @@
 // HTML Elements
 const addCategoryButton = document.getElementById(`add-category-button`);
 const categoryNameInput = document.getElementById(`category-name-input`);
+const categoriesList = document.getElementById(`categories-list`)
+
+// HTML Modification Functions
+function updateCategoriesList (response) {
+    categoriesList.innerHTML = "";
+    for (const category of response) {
+        const newCategoryItem = document.createElement(`li`);
+        newCategoryItem.textContent = `${category.id} - ${category.categoryName}`;
+        categoriesList.appendChild(newCategoryItem);
+    }
+}
 
 // API Functions
 function addCategory (categoryName) {
@@ -8,7 +19,7 @@ function addCategory (categoryName) {
         categoryName: categoryName
     }
 
-    fetch(`http://localhost:8080/api/Categories`,
+    return fetch(`http://localhost:8080/api/Categories`,
         {
             method: `POST`,
             body: JSON.stringify(body),
@@ -34,8 +45,15 @@ function addCategory (categoryName) {
         .catch(error => console.error("Error creating category:", error));
 }
 
+function getAllCategories () {
+    fetch(`http://localhost:8080/api/Categories`)
+    .then(data => data.json())
+    .then(response => updateMainSummary(month, year, response))
+    .catch(error => console.error("Error while getting the total:", error));
+}
+
 // Buttons
-addCategoryButton.onclick = function () {
+addCategoryButton.onclick = function async () {
     let categoryName = categoryNameInput.value.trim();
     
     if (categoryName === "") {
@@ -43,6 +61,6 @@ addCategoryButton.onclick = function () {
         return;
     }
 
-    addCategory(categoryName);
+    await addCategory(categoryName);
     categoryNameInput.value = "";
 }
