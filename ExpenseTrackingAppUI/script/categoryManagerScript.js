@@ -18,7 +18,7 @@ function updateSpendingsByCategoryList (response) {
     spendingsByCategoryList.innerHTML = "";
     for (const category of response) {
         const newCategoryItem = document.createElement(`li`);
-        newCategoryItem.textContent = `${category.categoryName} - ${category.totalAmount}`;
+        newCategoryItem.textContent = `${category.categoryName} - ${category.totalAmount} PLN`;
         spendingsByCategoryList.appendChild(newCategoryItem);
     }
 }
@@ -63,7 +63,7 @@ function getAllCategories () {
 }
 
 function getSpandingsByCategories () {
-    fetch(`http://localhost:8080/api/Categories/spendings`)
+    fetch(`http://localhost:8080/api/Expenses/spendings`)
     .then(data => data.json())
     .then(response => updateSpendingsByCategoryList(response))
     .catch(error => console.error("Error while getting the spendings by category:", error));

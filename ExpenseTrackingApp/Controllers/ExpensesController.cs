@@ -4,6 +4,7 @@ using ExpenseTrackingApp.Data;
 
 using ExpenseTrackingApp.Models.Entities;
 using ExpenseTrackingApp.Models.DTOs;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace ExpenseTrackingApp.Controllers;
 
@@ -118,19 +119,17 @@ public class ExpensesController : ControllerBase
     [Route("spendings")]
     public async Task<IActionResult> GetSpendingsByCategory()
     {
-        var spendings = await appDbContext.Expenses
-            .Join(
-                appDbContext.Categories,
-                expense => expense.CategoryId,
+        var spendings = await appDbContext.Categories
+            .GroupJoin(
+                appDbContext.Expenses,
                 category => category.Id,
-                (expense, category) => new { expense, category }
+                expense => expense.CategoryId,
+                (category, expensesGroup) => new GetSpendingsByCategoryDto
+                {
+                    CategoryName = category.CategoryName,
+                    TotalAmount = expensesGroup.Sum(expense => expense.Amount)
+                }
             )
-            .GroupBy(joined => joined.category.CategoryName)
-            .Select(group => new GetSpendingsByCategoryDto
-            {
-                CategoryName = group.Key,
-                TotalAmount = group.Sum(joined => joined.expense.Amount)
-            })
             .ToListAsync();
 
         return Ok(spendings);
