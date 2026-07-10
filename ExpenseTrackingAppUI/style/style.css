@@ -44,6 +44,38 @@ form {
     flex-direction: column;
 }
 
+canvas {
+    display: block;
+    width: 100%;
+}
+
+progress {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    
+    width: 100%;
+    height: 15px;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+progress::-webkit-progress-bar {
+    background-color: #3b224c;
+    border-radius: 10px;
+}
+
+progress::-webkit-progress-value {
+    background-color: #eed9fc;
+    border-radius: 10px;
+}
+
+progress::-moz-progress-bar {
+    background-color: #eed9fc;
+    border-radius: 10px;
+}
+
 .main-content {
     flex: 1;
     display: flex;
@@ -152,50 +184,18 @@ form {
     border-radius: 10px;
 }
 
+.chart-container {
+    width: 100%;
+    margin: 20px auto;
+    background-color: #23162c;
+    padding: 20px;
+    border-radius: 8px;
+}
+
 #main-summary {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 28px;
     color: rgb(238, 217, 252);
-}
-
-/* #recent-expenses-list {
-    display: flex;
-    flex-direction: column;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 14px;
-    color: rgb(238, 217, 252);
-    gap: 12px;
-    list-style-type: none;
-    text-align: left;
-    overflow-wrap: break-word;
-    word-break: break-word;
-} */
-
-progress {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    
-    width: 100%;
-    height: 15px;
-    border: none;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-progress::-webkit-progress-bar {
-    background-color: #3b224c;
-    border-radius: 10px;
-}
-
-progress::-webkit-progress-value {
-    background-color: #eed9fc;
-    border-radius: 10px;
-}
-
-progress::-moz-progress-bar {
-    background-color: #eed9fc;
-    border-radius: 10px;
 }
 
 #comments-input {
@@ -221,4 +221,8 @@ progress::-moz-progress-bar {
     overflow-wrap: break-word;
     word-break: break-word;
     overflow-x: hidden
+}
+
+#charts-panel-center-container {
+    width: 70vw;
 }
