@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -49,6 +53,10 @@ form {
     text-align: center;
 }
 
+.center-content {
+    width: 40vw;
+}
+
 .side-board {
     display: flex;
     flex-direction: column;
@@ -57,10 +65,8 @@ form {
     background-color: rgb(35, 4, 54);
     padding: 20px;
     border-radius: 10px;
-    min-height: 40vh;
-    max-height: 50vh;
-    min-width: 25vh;
-    max-width: 35vh;
+    height: 50vh;
+    width: 20vw;
     box-shadow: 5px 5px 10px rgb(54, 4, 84);
 }
 
@@ -92,6 +98,8 @@ form {
 
 .button:hover {
     background-color: rgb(201, 153, 233);
+    box-shadow: 5px 5px 12px rgb(59, 12, 91);
+    cursor: pointer;
     transform: scale(1.1);
 }
 
@@ -113,12 +121,13 @@ form {
 .side-board-list {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    width: 90%;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 14px;
     color: rgb(238, 217, 252);
     gap: 12px;
     padding: 0px;
+    padding-right: 20px;
     list-style-type: none;
     text-align: left;
     overflow-wrap: break-word;
@@ -161,6 +170,33 @@ form {
     overflow-wrap: break-word;
     word-break: break-word;
 } */
+
+progress {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    
+    width: 100%;
+    height: 15px;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+progress::-webkit-progress-bar {
+    background-color: #3b224c;
+    border-radius: 10px;
+}
+
+progress::-webkit-progress-value {
+    background-color: #eed9fc;
+    border-radius: 10px;
+}
+
+progress::-moz-progress-bar {
+    background-color: #eed9fc;
+    border-radius: 10px;
+}
 
 #comments-input {
     resize: none;
