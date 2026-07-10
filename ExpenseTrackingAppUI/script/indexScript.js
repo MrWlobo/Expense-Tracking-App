@@ -11,7 +11,7 @@ function updateRecentExpensesList(response) {
     recentExpensesList.innerHTML = "";
     for (const expense of response) {
         const newExpenseItem = document.createElement(`li`);
-        newExpenseItem.textContent = `${expense.categoryId} - ${expense.amount} PLN`;
+        newExpenseItem.textContent = `${expense.categoryName} - ${expense.amount} PLN`;
         recentExpensesList.appendChild(newExpenseItem);
     }
 }
