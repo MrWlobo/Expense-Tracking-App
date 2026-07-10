@@ -123,6 +123,24 @@ form {
     text-align: left;
     overflow-wrap: break-word;
     word-break: break-word;
+    overflow-x: hidden
+}
+
+.side-board::-webkit-scrollbar,
+.side-board-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.side-board::-webkit-scrollbar-track,
+.side-board-list::-webkit-scrollbar-track {
+    background: rgb(60, 6, 93);
+    border-radius: 10px;
+}
+
+.side-board::-webkit-scrollbar-thumb,
+.side-board-list::-webkit-scrollbar-thumb {
+    background: rgb(110, 22, 173);
+    border-radius: 10px;
 }
 
 #main-summary {
