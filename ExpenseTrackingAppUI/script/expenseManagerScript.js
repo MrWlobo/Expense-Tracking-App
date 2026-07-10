@@ -3,6 +3,17 @@ const addExpenseButton = document.getElementById(`add-expense-button`);
 const amountInput = document.getElementById(`amount-input`);
 const categoryIdInput = document.getElementById(`category-id-input`);
 const commentsInput = document.getElementById(`comments-input`);
+const recentExpensesList = document.getElementById(`recent-expenses-list`);
+
+// Modify HTML Functions
+function updateRecentExpensesList(response) {
+    recentExpensesList.innerHTML = "";
+    for (const expense of response) {
+        const newExpenseItem = document.createElement(`li`);
+        newExpenseItem.textContent = `${expense.categoryId} - ${expense.amount} PLN`;
+        recentExpensesList.appendChild(newExpenseItem);
+    }
+}
 
 // API Functions
 function addExpense (amount, categoryId, comments) {
@@ -13,7 +24,7 @@ function addExpense (amount, categoryId, comments) {
         categoryId: categoryId
     }
 
-    fetch(`http://localhost:8080/api/Expenses`,
+    return fetch(`http://localhost:8080/api/Expenses`,
         {
             method: `POST`,
             body: JSON.stringify(body),
@@ -39,14 +50,28 @@ function addExpense (amount, categoryId, comments) {
         .catch(error => console.error("Error creating expense:", error));
 }
 
+function getRecentExpenses(count) {
+    fetch(`http://localhost:8080/api/Expenses/recent/${count}`)
+    .then(data => data.json())
+    .then(response => updateRecentExpensesList(response))
+    .catch(error => console.error("Error while getting recent expenses:", error));
+}
+
+// Non-Interactive Elements
+let recentExpensesMaxCount = 5;
+
+getRecentExpenses(recentExpensesMaxCount);
+
+
 // Buttons
-addExpenseButton.onclick = function () {
+addExpenseButton.onclick = async function () {
     let amount = Number(amountInput.value);
     let categoryId = Number(categoryIdInput.value);
     let comments = commentsInput.value;
 
-    addExpense(amount, categoryId, comments);
+    await addExpense(amount, categoryId, comments);
     amountInput.value = "";
     categoryIdInput.value = "";
     commentsInput.value = "";
+    getRecentExpenses(recentExpensesMaxCount);
 }

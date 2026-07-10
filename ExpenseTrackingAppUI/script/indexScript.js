@@ -9,7 +9,6 @@ function updateMainSummary(month, year, response) {
 
 function updateRecentExpensesList(response) {
     recentExpensesList.innerHTML = "";
-    console.log("Update xd")
     for (const expense of response) {
         const newExpenseItem = document.createElement(`li`);
         newExpenseItem.textContent = `${expense.categoryId} - ${expense.amount} PLN`;
