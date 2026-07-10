@@ -4,6 +4,7 @@ const amountInput = document.getElementById(`amount-input`);
 const categoryIdInput = document.getElementById(`category-id-input`);
 const commentsInput = document.getElementById(`comments-input`);
 const recentExpensesList = document.getElementById(`recent-expenses-list`);
+const categoriesList = document.getElementById(`categories-with-ids-list`)
 
 // Modify HTML Functions
 function updateRecentExpensesList(response) {
@@ -12,6 +13,15 @@ function updateRecentExpensesList(response) {
         const newExpenseItem = document.createElement(`li`);
         newExpenseItem.textContent = `${expense.categoryName} - ${expense.amount} PLN`;
         recentExpensesList.appendChild(newExpenseItem);
+    }
+}
+
+function updateCategoriesList (response) {
+    categoriesList.innerHTML = "";
+    for (const category of response) {
+        const newCategoryItem = document.createElement(`li`);
+        newCategoryItem.textContent = `${category.id} - ${category.categoryName}`;
+        categoriesList.appendChild(newCategoryItem);
     }
 }
 
@@ -57,10 +67,18 @@ function getRecentExpenses(count) {
     .catch(error => console.error("Error while getting recent expenses:", error));
 }
 
+function getAllCategories () {
+    fetch(`http://localhost:8080/api/Categories`)
+    .then(data => data.json())
+    .then(response => updateCategoriesList(response))
+    .catch(error => console.error("Error while getting the categories:", error));
+}
+
 // Non-Interactive Elements
 let recentExpensesMaxCount = 5;
 
 getRecentExpenses(recentExpensesMaxCount);
+getAllCategories()
 
 
 // Buttons
