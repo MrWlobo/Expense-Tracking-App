@@ -115,6 +115,7 @@ public class ExpensesController : ControllerBase
     }
 
     [HttpGet]
+    [Route("spendings")]
     public async Task<IActionResult> GetSpendingsByCategory()
     {
         var spendings = await appDbContext.Expenses

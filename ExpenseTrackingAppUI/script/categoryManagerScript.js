@@ -2,6 +2,7 @@
 const addCategoryButton = document.getElementById(`add-category-button`);
 const categoryNameInput = document.getElementById(`category-name-input`);
 const categoriesList = document.getElementById(`categories-list`)
+const spendingsByCategoryList = document.getElementById(`spendings-by-category-list`)
 
 // HTML Modification Functions
 function updateCategoriesList (response) {
@@ -10,6 +11,15 @@ function updateCategoriesList (response) {
         const newCategoryItem = document.createElement(`li`);
         newCategoryItem.textContent = `${category.id} - ${category.categoryName}`;
         categoriesList.appendChild(newCategoryItem);
+    }
+}
+
+function updateSpendingsByCategoryList (response) {
+    spendingsByCategoryList.innerHTML = "";
+    for (const category of response) {
+        const newCategoryItem = document.createElement(`li`);
+        newCategoryItem.textContent = `${category.categoryName} - ${category.totalAmount}`;
+        spendingsByCategoryList.appendChild(newCategoryItem);
     }
 }
 
