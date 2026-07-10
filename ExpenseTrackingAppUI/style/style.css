@@ -76,6 +76,11 @@ progress::-moz-progress-bar {
     border-radius: 10px;
 }
 
+html {
+    scrollbar-color: #653783 #27073e;
+    scrollbar-width: thin;
+}
+
 .main-content {
     flex: 1;
     display: flex;
