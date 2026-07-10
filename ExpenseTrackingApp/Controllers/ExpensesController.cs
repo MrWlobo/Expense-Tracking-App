@@ -108,6 +108,27 @@ public class ExpensesController : ControllerBase
         return Ok(expenseDto);
     }
 
+    [HttpGet]
+    public async Task<IActionResult> GetSpendingsByCategory()
+    {
+        var spendings = await appDbContext.Expenses
+            .Join(
+                appDbContext.Categories,
+                expense => expense.CategoryId,
+                category => category.Id,
+                (expense, category) => new { expense, category }
+            )
+            .GroupBy(joined => joined.category.CategoryName)
+            .Select(group => new 
+            {
+                CategoryName = group.Key,
+                TotalAmount = group.Sum(joined => joined.expense.Amount)
+            })
+            .ToListAsync();
+
+        return Ok(spendings);
+    }
+
     [HttpPost]
     public async Task<IActionResult> CreateExpense([FromBody] CreateExpenseDto expenseDto)
     {
