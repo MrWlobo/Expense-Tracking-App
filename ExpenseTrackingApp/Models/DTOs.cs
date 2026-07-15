@@ -55,3 +55,13 @@ public class GetExpenseWithCategoryNameDto
     public DateTime Date { get; set; }
     public required string CategoryName { get; set; }
 }
+
+public class GetExpenseByMonthDto
+{
+    public int Id { get; set; }
+    public decimal TotalAmount { get; set; }
+    public string? Comments { get; set; }
+    public int Month { get; set; }
+    public int Year { get; set; }
+    public required string CategoryName { get; set; }
+}

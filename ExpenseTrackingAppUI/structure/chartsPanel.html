@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lnag="en">
+<html lang="en">
     <head>
         <meta charset="UFT-8">
         <title>Expense Tracker</title>
@@ -21,9 +21,19 @@
                     <a href="../index.html">
                         <button class="button">Home Page</button>
                     </a>
+                    <button class="button" id="line-chart-button">Spendings by month</button>
+                    <button class="button" id="bar-chart-button">Spendings by category (Bar Chart)</button>
+                    <button class="button" id="pie-chart-button">Spendings by category (Pie Chart)</button>
+                    <select id="year-selector" class="select-input">
+                        <option value="2026">2026</option>
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                    </select>
                 </div>
             </div>
         </main>
         <footer>Expense Tracker 2026</footer>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="../script/chartsPanelScript.js"></script>
     </body>
 </html>

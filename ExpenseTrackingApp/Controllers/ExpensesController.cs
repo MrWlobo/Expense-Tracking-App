@@ -93,6 +93,45 @@ public class ExpensesController : ControllerBase
     }
 
     [HttpGet]
+    [Route("monthly/{year:int}")]
+    public async Task<IActionResult> GetExpensesByMonth([FromRoute] int year)
+    {
+        var groupedData = await appDbContext.Expenses
+            .Join(
+                appDbContext.Categories,
+                expense => expense.CategoryId,
+                category => category.Id,
+                (expense, category) => new { expense, category }
+            )
+            .Where(joined => joined.expense.Date.Year == year)
+            .GroupBy(joined => new
+            {
+                Year = joined.expense.Date.Year,
+                Month = joined.expense.Date.Month,
+                CategoryName = joined.category.CategoryName
+            })
+            .Select(group => new GetExpenseByMonthDto
+            {
+                Year = group.Key.Year,
+                Month = group.Key.Month,
+                CategoryName = group.Key.CategoryName,
+                TotalAmount = group.Sum(x => x.expense.Amount)
+            })
+            .OrderBy(x => x.Year)
+            .ThenBy(x => x.Month)
+            .ToListAsync();
+
+        var result = groupedData.Select(x => new
+        {
+            Month = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(x.Month),
+            CategoryName = x.CategoryName,
+            TotalAmount = x.TotalAmount
+        });
+
+        return Ok(result);
+    }
+
+    [HttpGet]
     [Route("{id:int}")]
     public async Task<IActionResult> GetExpenseById([FromRoute] int id)
     {
