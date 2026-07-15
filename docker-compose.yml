@@ -39,4 +39,8 @@ services:
       interval: 10s
       timeout: 3s
       retries: 10
-      
+    volumes:
+      - mssql-data:/var/opt/mssql
+
+volumes:
+  mssql-data:   

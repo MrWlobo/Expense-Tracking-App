@@ -1,4 +1,5 @@
 // HTML Elements
+const title = document.getElementById('title');
 const ctx = document.getElementById('chart').getContext('2d');
 const lineChartButton = document.getElementById('line-chart-button');
 const barChartButton = document.getElementById('bar-chart-button');
@@ -44,6 +45,41 @@ function renderBarChart(categories, amounts) {
     });
 }
 
+function renderPieChart(categories, amounts) {
+    destroyActiveChart();
+    
+    currentChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: categories,
+            datasets: [{
+                label: 'Expenses',
+                data: amounts,
+                backgroundColor: [
+                    'rgba(238, 217, 252, 0.6)', 
+                    'rgba(180, 140, 210, 0.6)', 
+                    'rgba(120, 90, 160, 0.6)', 
+                    'rgba(80, 50, 110, 0.6)'
+                ],
+                borderColor: '#eed9fc',
+                borderWidth: 2,
+                radius: '70%'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#eed9fc'
+                    }
+                }
+            }
+        }
+    });
+}
+
 function renderLineChart(months, datasets) {
     destroyActiveChart();
 
@@ -65,13 +101,24 @@ function renderLineChart(months, datasets) {
 }
 
 // API Functions
-function loadCategorySpendings() {
+function loadCategorySpendingsBar() {
     fetch('http://localhost:8080/api/Expenses/spendings')
     .then(res => res.json())
     .then(response => {
         const categories = response.map(item => item.categoryName);
         const amounts = response.map(item => item.totalAmount);
         renderBarChart(categories, amounts);
+    })
+    .catch(error => console.error(error));
+}
+
+function loadCategorySpendingsPie() {
+    fetch('http://localhost:8080/api/Expenses/spendings')
+    .then(res => res.json())
+    .then(response => {
+        const categories = response.map(item => item.categoryName);
+        const amounts = response.map(item => item.totalAmount);
+        renderPieChart(categories, amounts);
     })
     .catch(error => console.error(error));
 }
@@ -128,10 +175,17 @@ yearSelector.addEventListener('drop', (event) => {
 // Buttons
 lineChartButton.onclick = function () {
     loadMonthlyTrends();
+    title.textContent = `Monthly Expenses`;
 }
 
 barChartButton.onclick = function () {
-    loadCategorySpendings();
+    loadCategorySpendingsBar();
+    title.textContent = `Expenses by Category`;
+}
+
+pieChartButton.onclick = function () {
+    loadCategorySpendingsPie();
+    title.textContent = `Expenses by Category`;
 }
 
 
