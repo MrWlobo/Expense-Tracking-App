@@ -106,8 +106,22 @@ function loadMonthlyTrends(year = yearSelector.value) {
     .catch(error => console.error(error));
 }
 
+// Year Selector
+yearSelector.value = new Date().getFullYear();
 yearSelector.addEventListener('change', (event) => {
     loadMonthlyTrends(event.target.value);
+});
+
+yearSelector.addEventListener('keydown', (event) => {
+    event.preventDefault();
+});
+
+yearSelector.addEventListener('paste', (event) => {
+    event.preventDefault();
+});
+
+yearSelector.addEventListener('drop', (event) => {
+    event.preventDefault();
 });
 
 
