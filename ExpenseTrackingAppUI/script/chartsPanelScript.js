@@ -180,16 +180,19 @@ yearSelector.addEventListener('drop', (event) => {
 lineChartButton.onclick = function () {
     loadMonthlyTrends();
     title.textContent = `Monthly Expenses`;
+    yearSelector.style.display = `block`
 }
 
 barChartButton.onclick = function () {
     loadCategorySpendingsBar();
     title.textContent = `Expenses by Category`;
+    yearSelector.style.display = `none`
 }
 
 pieChartButton.onclick = function () {
     loadCategorySpendingsPie();
     title.textContent = `Expenses by Category`;
+    yearSelector.style.display = `none`
 }
 
 
