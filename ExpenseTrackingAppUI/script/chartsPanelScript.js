@@ -63,16 +63,20 @@ function renderPieChart(categories, amounts) {
                 ],
                 borderColor: '#eed9fc',
                 borderWidth: 2,
-                radius: '70%'
+                radius: '50%'
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            layout: {
+                padding: 10
+            },
             plugins: {
                 legend: {
                     labels: {
-                        color: '#eed9fc'
+                        color: '#eed9fc',
+                        padding: 10
                     }
                 }
             }
