@@ -1,11 +1,18 @@
 // HTML Elements
 const mainSummary = document.getElementById(`main-summary`);
 const recentExpensesList = document.getElementById(`recent-expenses-list`);
+const progressTitle = document.getElementById(`progress-title`);
+const progressBar = document.getElementById(`progress-bar`);
 
 // Modify HTML Functions
 function updateMainSummary (month, year, response) {
     mainSummary.textContent = `This month (${month}.${year}) you spent ${response} PLN.`;
 } 
+
+function updateProgressBar (response) {
+    progressTitle.textContent = `${response}/4000 PLN`;
+    progressBar.value = response;
+}
 
 function updateRecentExpensesList (response) {
     recentExpensesList.innerHTML = "";
@@ -20,7 +27,10 @@ function updateRecentExpensesList (response) {
 function getTotalByMonth (month, year) {
     fetch(`http://localhost:8080/api/Expenses/${month}/${year}/total`)
     .then(data => data.json())
-    .then(response => updateMainSummary(month, year, response))
+    .then(response => {
+        updateMainSummary(month, year, response);
+        updateProgressBar(response);
+    })
     .catch(error => console.error("Error while getting the total:", error));
 }
 
