@@ -20,10 +20,10 @@
                 <h1>Expense Panel</h1>
                 <form>
                     <label class="title" for="amount-input">Amount</label>
-                    <input type="text" inputmode="decimal" placeholder="0.00" class="input-field" id="amount-input" autocomplete="off">
+                    <input type="number" placeholder="0.00" class="input-field" id="amount-input" autocomplete="off" min="0">
 
                     <label class="title" for="category-id-input">Category ID</label>
-                    <input type="number" placeholder="0" class="input-field" id="category-id-input" autocomplete="off">
+                    <input type="number" placeholder="Category" class="input-field" id="category-id-input" autocomplete="off" min="1">
 
                     <label class="title" for="category-id-input">Comments</label>
                     <textarea class="input-field" id="comments-input" maxlength="500" rows="5" cols="15"></textarea>
