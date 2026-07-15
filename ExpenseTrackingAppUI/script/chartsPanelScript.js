@@ -4,6 +4,7 @@ const ctx = document.getElementById('chart').getContext('2d');
 const lineChartButton = document.getElementById('line-chart-button');
 const barChartButton = document.getElementById('bar-chart-button');
 const pieChartButton = document.getElementById('pie-chart-button');
+const yearLabel = document.getElementById('year-label');
 const yearSelector = document.getElementById('year-selector');
 let currentChart = null;
 
@@ -180,19 +181,22 @@ yearSelector.addEventListener('drop', (event) => {
 lineChartButton.onclick = function () {
     loadMonthlyTrends();
     title.textContent = `Monthly Expenses`;
-    yearSelector.style.display = `block`
+    yearSelector.style.display = `block`;
+    yearLabel.style.display = `block`;
 }
 
 barChartButton.onclick = function () {
     loadCategorySpendingsBar();
     title.textContent = `Expenses by Category`;
-    yearSelector.style.display = `none`
+    yearSelector.style.display = `none`;
+    yearLabel.style.display = `none`;
 }
 
 pieChartButton.onclick = function () {
     loadCategorySpendingsPie();
     title.textContent = `Expenses by Category`;
-    yearSelector.style.display = `none`
+    yearSelector.style.display = `none`;
+    yearLabel.style.display = `none`;
 }
 
 
