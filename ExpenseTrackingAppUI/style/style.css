@@ -155,6 +155,17 @@ html {
     border-radius: 5px;
 }
 
+.input-field::-webkit-inner-spin-button,
+.input-field::-webkit-outer-spin-button {
+    filter: invert(87%) sepia(18%) saturate(1210%) hue-rotate(220deg) brightness(101%) contrast(98%);
+    opacity: 1;
+    cursor: pointer;
+}
+
+.input-field {
+    scrollbar-color: #eed9fc transparent;
+}
+
 .side-board-list {
     display: flex;
     flex-direction: column;
