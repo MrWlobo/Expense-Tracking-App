@@ -10,10 +10,17 @@ public class Expense
     public int Id { get; set; }
 
     [Required]
+    public required string Name { get; set; }
+
+    [Required]
     public int CategoryId { get; set; }
 
     [Required]
+    public int UserId { get; set; }
+
+    [Required]
     [Column(TypeName = "decimal(18,2)")]
+    [Range(0.01, double.MaxValue)]
     public decimal Amount { get; set; }
 
     [Required]
@@ -24,4 +31,7 @@ public class Expense
 
     [ForeignKey(nameof(CategoryId))]
     public virtual Category? Category { get; set; }
+
+    [ForeignKey(nameof(UserId))]
+    public virtual User? User { get; set; }
 }
