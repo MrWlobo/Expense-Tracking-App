@@ -26,6 +26,7 @@ public class ExpensesController : ControllerBase
             .Select(expense => new GetExpenseDto
             {
                 Id = expense.Id,
+                Name = expense.Name,
                 Amount = expense.Amount,
                 Comments = expense.Comments ?? string.Empty,
                 Date = expense.Date,
@@ -45,6 +46,7 @@ public class ExpensesController : ControllerBase
             .Select(expense => new GetExpenseDto
             {
                 Id = expense.Id,
+                Name = expense.Name,
                 Amount = expense.Amount,
                 Comments = expense.Comments ?? string.Empty,
                 Date = expense.Date,
@@ -145,6 +147,7 @@ public class ExpensesController : ControllerBase
         var expenseDto = new GetExpenseDto
         {
             Id = expense.Id,
+            Name = expense.Name,
             Amount = expense.Amount,
             Comments = expense.Comments ?? string.Empty,
             Date = expense.Date,
@@ -179,6 +182,7 @@ public class ExpensesController : ControllerBase
     {
         var expense = new Expense
         {
+            Name = expenseDto.Name,
             Amount = expenseDto.Amount,
             Comments = expenseDto.Comments,
             Date = expenseDto.Date,

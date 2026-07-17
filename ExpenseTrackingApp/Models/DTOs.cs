@@ -61,7 +61,6 @@ public class GetExpenseWithCategoryNameDto
 
 public class GetExpenseByMonthDto
 {
-    public required int Id { get; set; }
     public required decimal TotalAmount { get; set; }
     public string? Comments { get; set; }
     public required int Month { get; set; }
