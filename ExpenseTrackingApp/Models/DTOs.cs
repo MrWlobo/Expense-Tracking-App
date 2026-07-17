@@ -2,23 +2,26 @@ namespace ExpenseTrackingApp.Models.DTOs;
 
 public class CreateExpenseDto
 {
-    public decimal Amount { get; set; }
+    public required string Name { get; set; }
+    public required decimal Amount { get; set; }
     public string? Comments { get; set; }
-    public DateTime Date { get; set; }
-    public int CategoryId { get; set; }
+    public required DateTime Date { get; set; }
+    public required int CategoryId { get; set; }
 }
 
 public class GetExpenseDto
 {
-    public int Id { get; set; }
-    public decimal Amount { get; set; }
+    public required int Id { get; set; }
+    public required string Name { get; set; }
+    public required decimal Amount { get; set; }
     public string? Comments { get; set; }
-    public DateTime Date { get; set; }
-    public int CategoryId { get; set; }
+    public required DateTime Date { get; set; }
+    public required int CategoryId { get; set; }
 }
 
 public class UpdateExpenseDto
 {
+    public string? Name { get; set; }
     public decimal Amount { get; set; }
     public string? Comments { get; set; }
     public DateTime Date { get; set; }
@@ -32,7 +35,7 @@ public class CreateCategoryDto
 
 public class GetCategoryDto
 {
-    public int Id { get; set; }
+    public required int Id { get; set; }
     public required string CategoryName { get; set; }
 }
 
@@ -44,24 +47,24 @@ public class UpdateCategoryDto
 public class GetSpendingsByCategoryDto
 {
     public required string CategoryName { get; set; }
-    public decimal TotalAmount { get; set; }
+    public required decimal TotalAmount { get; set; }
 }
 
 public class GetExpenseWithCategoryNameDto
 {
-    public int Id { get; set; }
-    public decimal Amount { get; set; }
+    public required int Id { get; set; }
+    public required decimal Amount { get; set; }
     public string? Comments { get; set; }
-    public DateTime Date { get; set; }
+    public required DateTime Date { get; set; }
     public required string CategoryName { get; set; }
 }
 
 public class GetExpenseByMonthDto
 {
-    public int Id { get; set; }
-    public decimal TotalAmount { get; set; }
+    public required int Id { get; set; }
+    public required decimal TotalAmount { get; set; }
     public string? Comments { get; set; }
-    public int Month { get; set; }
-    public int Year { get; set; }
+    public required int Month { get; set; }
+    public required int Year { get; set; }
     public required string CategoryName { get; set; }
 }
