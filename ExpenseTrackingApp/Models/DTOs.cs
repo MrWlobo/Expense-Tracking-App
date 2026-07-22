@@ -80,7 +80,6 @@ public class GetUserDto
 {
     public required int Id { get; set; }
     public required string Login { get; set; }
-    public required string PasswordHash { get; set; }
     public decimal ExpenseGoal { get; set; }
     public required string Currency { get; set; }
 }
